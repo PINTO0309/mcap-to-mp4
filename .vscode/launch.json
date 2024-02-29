@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "debug",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "rosbag2_2024_02_28-04_16_37_0.mcap",
+                "-t", "/zed2i/zed_node/rgb_raw/image_raw_color",
+                "-o", "output.mp4",
+                "-c", "bgra",
+            ]
+        }
+    ]
+}

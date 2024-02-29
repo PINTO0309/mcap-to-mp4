@@ -1,0 +1,54 @@
+{
+    // https://containers.dev/implementors/json_reference/#variables-in-devcontainerjson
+    "name": "devcontainer",
+    "build": {
+        "context": "..",
+        "dockerfile": "../Dockerfile"
+    },
+    "runArgs": [
+        "--gpus", "all"
+        // "--device", "/dev/video0:/dev/video0:mwr",
+        // "-v", "/dev/:/dev/",
+        // "--privileged"
+    ],
+    "workspaceFolder": "/works",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/works,type=bind,consistency=cached",
+    // Features to add to the dev container. More info: https://containers.dev/features
+    "features": {
+        "ghcr.io/devcontainers/features/python:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-extension-pack",
+                "usernamehw.errorlens",
+                "MS-CEINTL.vscode-language-pack-ja",
+                "ms-python.vscode-pylance@2023.10.53",
+                "ms-python.python",
+                "nonanonno.vscode-ros2",
+                "deitry.colcon-helper",
+                "redhat.vscode-yaml",
+                "docsmsft.docs-yaml",
+                "twxs.cmake",
+                "josetr.cmake-language-support-vscode",
+                "TqrHsn.vscode-docker-registry-explorer",
+                "vscjava.vscode-java-debug",
+                "vscjava.vscode-java-pack",
+                "vscjava.vscode-maven",
+                "redhat.java",
+                "ms-vscode.PowerShell",
+                "TylerLeonhardt.vscode-inline-values-powershell",
+                "oderwat.indent-rainbow",
+                "mosapride.zenkaku",
+                "ms-dotnettools.csharp",
+                "ms-dotnettools.csdevkit",
+                "kreativ-software.csharpextensions",
+                "ryu1kn.partial-diff",
+                "ionutvmi.path-autocomplete",
+                "mechatroner.rainbow-csv"
+            ]
+        }
+    }
+}

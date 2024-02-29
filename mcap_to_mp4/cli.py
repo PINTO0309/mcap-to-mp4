@@ -32,6 +32,7 @@ def main():
     parser.add_argument("input", help="input bag file path to read")
     parser.add_argument("-t", "--topic", help="topic name to convert. if not specified, the topic list will be shown")
     parser.add_argument("-o", "--output", help="output file name", default="output.mp4")
+    parser.add_argument("-c", "--channel_order", help="channel order", default="rgb", choices=["rgb", "bgr", "rgba", "bgra"])
     args = parser.parse_args()
 
     # check if the file exists
@@ -52,7 +53,11 @@ def main():
         reader = make_reader(f, decoder_factories=[DecoderFactory()])
         for schema, channel, message, ros_msg in reader.iter_decoded_messages():
             if schema.name == "sensor_msgs/msg/Image" and channel.topic == args.topic:
-                img_array = np.frombuffer(ros_msg.data, dtype=np.uint8).reshape((ros_msg.height, ros_msg.width, 3))
+                img_array = np.frombuffer(ros_msg.data, dtype=np.uint8).reshape((ros_msg.height, ros_msg.width, -1))
+                if args.channel_order in ["rgba", "bgra"]:
+                    img_array = img_array[:, :, :3]
+                if args.channel_order in ["bgr", "bgra"]:
+                    img_array = img_array[:, :, ::-1]
                 img = Image.fromarray(img_array)
                 ims.append(img)
                 diff_timestamp.append(message.log_time - prev_timestamp)
