@@ -13,7 +13,7 @@ docker build -t tiryoh/mcap-to-mp4 .
 ```
 
 ```
-docker run --rm -it -v "$(PWD):/works" tiryoh/mcap-to-mp4
+docker run --rm -it -v `pwd`:/works tiryoh/mcap-to-mp4
 ```
 
 To accommodate 4-channel images, channel order is added to the implementation in the citation repository.
