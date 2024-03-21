@@ -5,7 +5,7 @@ SHELL ["/bin/bash", "-c"]
 
 # Install ffmpeg
 RUN apt-get update -qq && \
-    apt-get install -y ffmpeg sudo wget && \
+    apt-get install -y ffmpeg sudo wget nano && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
